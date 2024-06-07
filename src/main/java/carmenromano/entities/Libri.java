@@ -2,11 +2,13 @@ package carmenromano.entities;
 
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "libri")
+@DiscriminatorValue("libro")
 public class Libri extends Catalogo{
     @Column(nullable = false)
     private String autore;

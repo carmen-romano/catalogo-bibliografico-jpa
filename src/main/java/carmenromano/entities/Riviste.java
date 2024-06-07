@@ -6,6 +6,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "riviste")
+@DiscriminatorValue("riviste")
+
 public class Riviste extends Catalogo{
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)

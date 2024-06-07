@@ -67,7 +67,9 @@ public class CatalogoDAO {
     //     TypedQuery<Catalogo> query = entityManager.createQuery("SELECT a FROM Catalogo a WHERE LOWER(a.titolo) LIKE LOWER(:titolo)", Catalogo.class);
     //    query.setParameter("titolo", "%" + titolo.toLowerCase() + "%");
     //   return query.getResultList();
-    //ERROR Cannot instantiate abstract class or interface:  : carmenromano.entities.Catalogo ???
+    //ERROR Cannot instantiate abstract class or interface:  : carmenromano.entities.Catalogo
+
+
     public List<Catalogo> searchByTitle(String titolo) {
         TypedQuery<Libri> queryLibri = entityManager.createQuery("SELECT l FROM Libri l WHERE LOWER(l.titolo) LIKE LOWER(:titolo)", Libri.class);
         queryLibri.setParameter("titolo", "%" + titolo.toLowerCase() + "%");

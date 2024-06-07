@@ -8,6 +8,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "catalogo")
+@DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.STRING)
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Catalogo {
     @Id
