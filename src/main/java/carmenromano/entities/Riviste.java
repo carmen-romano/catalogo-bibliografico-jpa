@@ -11,6 +11,7 @@ public class Riviste extends Catalogo{
     @Enumerated(EnumType.STRING)
     private Periodicità periodicità;
 
+    public Riviste(){}
     public Riviste(int numeroPagine, int annoPubblicazione, String titolo, Periodicità periodicità) {
         super(numeroPagine, annoPubblicazione, titolo);
         this.periodicità = periodicità;
