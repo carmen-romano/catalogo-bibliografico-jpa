@@ -14,16 +14,15 @@ public class Libri extends Catalogo{
     @Column(nullable = false)
     private String genere;
 
+    public Libri() {
+
+    }
     public Libri(int numeroPagine, int annoPubblicazione, String titolo, String autore, String genere) {
         super(numeroPagine, annoPubblicazione, titolo);
         this.autore = autore;
         this.genere = genere;
     }
 
-    public Libri(String autore, String genere) {
-        this.autore = autore;
-        this.genere = genere;
-    }
 
     public String getAutore() {
         return autore;

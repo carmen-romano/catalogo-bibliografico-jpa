@@ -1,9 +1,12 @@
 package carmenromano.dao;
 
 import carmenromano.entities.Catalogo;
+import carmenromano.entities.Libri;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+import java.util.List;
 import java.util.UUID;
 
 public class CatalogoDAO {
@@ -26,6 +29,10 @@ public class CatalogoDAO {
         }
     }
 
+    public Catalogo searchById(String id) {
+        return entityManager.find(Catalogo.class, UUID.fromString(id));
+    }
+
     public void delete(String id) {
         try {
             EntityTransaction trans = entityManager.getTransaction();
@@ -42,8 +49,17 @@ public class CatalogoDAO {
         }
 
     }
-    public Catalogo searchById(String id) {
-        return entityManager.find(Catalogo.class, UUID.fromString(id));
+    public List<Catalogo> searchByPublicationYear(int annoPubblicazione) {
+        TypedQuery<Catalogo> query = entityManager.createQuery("SELECT c FROM Catalogo c WHERE c.annoPubblicazione = :annoPubblicazione", Catalogo.class);
+        query.setParameter("annoPubblicazione", annoPubblicazione);
+        return query.getResultList();
     }
+
+    public List<Libri> searchByAuthor(String autore) {
+        TypedQuery<Libri> query = entityManager.createQuery("SELECT c FROM Libri c WHERE c.autore = :autore", Libri.class);
+        query.setParameter("autore", autore);
+        return query.getResultList();
+    }
+
 
 }
