@@ -32,10 +32,11 @@ public class Prestito {
     public Prestito() {}
 
 
-    public Prestito(Utente utente, Catalogo elementoPrestato, LocalDate restituzioneEffettiva) {
+    public Prestito(Utente utente, Catalogo elementoPrestato) {
         this.utente = utente;
         this.elementoPrestato = elementoPrestato;
-        this.restituzioneEffettiva = restituzioneEffettiva;
+        this.inizioPrestito = LocalDate.now();
+        this.restituzionePrevista = inizioPrestito.plusDays(30);
     }
 
     public UUID getId() {

@@ -4,6 +4,7 @@ package carmenromano.entities;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Random;
 import java.util.UUID;
 
 @Entity
@@ -22,16 +23,16 @@ public class Utente {
     @Column(nullable = false)
     private LocalDate dataDiNascita;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     @GeneratedValue
     private int numeroTessera;
 
     public  Utente(){};
-    public Utente(String nome, String cognome, LocalDate dataDiNascita, int numeroTessera) {
+    public Utente(String nome, String cognome, LocalDate dataDiNascita) {
         this.nome = nome;
         this.cognome = cognome;
         this.dataDiNascita = dataDiNascita;
-        this.numeroTessera = numeroTessera;
+        this.numeroTessera = new Random().nextInt(1,100);
     }
 
     public UUID getId() {

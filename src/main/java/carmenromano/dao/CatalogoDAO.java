@@ -2,10 +2,12 @@ package carmenromano.dao;
 
 import carmenromano.entities.Catalogo;
 import carmenromano.entities.Libri;
+import carmenromano.entities.Riviste;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -60,6 +62,24 @@ public class CatalogoDAO {
         query.setParameter("autore", autore);
         return query.getResultList();
     }
+
+    // public List<Catalogo> searchByTitle(String titolo) {
+    //     TypedQuery<Catalogo> query = entityManager.createQuery("SELECT a FROM Catalogo a WHERE LOWER(a.titolo) LIKE LOWER(:titolo)", Catalogo.class);
+    //    query.setParameter("titolo", "%" + titolo.toLowerCase() + "%");
+    //   return query.getResultList();
+    //ERROR Cannot instantiate abstract class or interface:  : carmenromano.entities.Catalogo ???
+    public List<Catalogo> searchByTitle(String titolo) {
+        TypedQuery<Libri> queryLibri = entityManager.createQuery("SELECT l FROM Libri l WHERE LOWER(l.titolo) LIKE LOWER(:titolo)", Libri.class);
+        queryLibri.setParameter("titolo", "%" + titolo.toLowerCase() + "%");
+        TypedQuery<Riviste> queryRiviste = entityManager.createQuery("SELECT r FROM Riviste r WHERE LOWER(r.titolo) LIKE LOWER(:titolo)", Riviste.class);
+        queryRiviste.setParameter("titolo", "%" + titolo.toLowerCase() + "%");
+        List<Catalogo> result = new ArrayList<>();
+        result.addAll(queryLibri.getResultList());
+        result.addAll(queryRiviste.getResultList());
+
+        return result;
+    }
+
 
 
 }

@@ -56,4 +56,13 @@ public abstract class Catalogo {
         this.numeroPagine = numeroPagine;
     }
 
+    @Override
+    public String toString() {
+        return "Catalogo{" +
+                "id=" + id +
+                ", titolo='" + titolo + '\'' +
+                ", annoPubblicazione=" + annoPubblicazione +
+                ", numeroPagine=" + numeroPagine +
+                '}';
+    }
 }
